@@ -38,7 +38,7 @@ class MatchPage extends StatefulWidget {
 class _MatchPageState extends State<MatchPage> with WidgetsBindingObserver {
   TennisScore score = TennisScore();
   final history = <TennisScore>[];
-  List<String> names = ['선수 A', '선수 B'];
+  List<String> names = ['팀 A', '팀 B'];
   final bindings = <String, String>{
     'server': 'key:${LogicalKeyboardKey.arrowUp.keyId}',
     'receiver': 'key:${LogicalKeyboardKey.arrowDown.keyId}',
@@ -444,7 +444,9 @@ class _MatchPageState extends State<MatchPage> with WidgetsBindingObserver {
                     padding: const EdgeInsets.all(8),
                     child: Text(
                       score.deuce
-                          ? (noAd ? 'NO-AD DEUCE · 다음 포인트 게임' : 'DEUCE · 두 점 차로 승리')
+                          ? (noAd
+                                ? 'NO-AD DEUCE · 다음 포인트 게임'
+                                : 'DEUCE · 두 점 차로 승리')
                           : 'ADVANTAGE',
                       textAlign: TextAlign.center,
                     ),
@@ -473,26 +475,6 @@ class _MatchPageState extends State<MatchPage> with WidgetsBindingObserver {
                   ),
                 ),
                 const SizedBox(height: 10),
-                OutlinedButton.icon(
-                  key: const Key('leaderPoint'),
-                  onPressed: blocked ? null : () => apply(ScoreAction.leader),
-                  icon: const Icon(Icons.radio_button_checked),
-                  label: Padding(
-                    padding: const EdgeInsets.all(12),
-                    child: Text(
-                      score.shortcutWinner == null
-                          ? '가운데 · 현재 점수 안내'
-                          : '가운데 · ${names[score.shortcutWinner!]} +1',
-                    ),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 8),
-                  child: Text(
-                    '가운데 득점: 40:30 · 30:40 · 어드밴티지\n그 외에는 점수만 읽습니다.',
-                    style: TextStyle(color: Colors.white60),
-                  ),
-                ),
                 Wrap(
                   spacing: 8,
                   children: [
