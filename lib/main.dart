@@ -38,7 +38,7 @@ class MatchPage extends StatefulWidget {
 class _MatchPageState extends State<MatchPage> with WidgetsBindingObserver {
   TennisScore score = TennisScore();
   final history = <TennisScore>[];
-  List<String> names = ['팀 A', '팀 B'];
+  List<String> names = ['홈팀', '원정팀'];
   final bindings = <String, String>{
     'server': 'key:${LogicalKeyboardKey.arrowUp.keyId}',
     'receiver': 'key:${LogicalKeyboardKey.arrowDown.keyId}',
